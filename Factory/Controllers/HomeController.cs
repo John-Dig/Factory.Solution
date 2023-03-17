@@ -1,15 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
-using ToDoList.Models;
+using Factory.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ToDoList.Controllers
+namespace Factory.Controllers
 {
     public class HomeController : Controller
     {
-      private readonly ToDoListContext _db;
+      private readonly FactoryContext _db;
 
-      public HomeController(ToDoListContext db)
+      public HomeController(FactoryContext db)
       {
         _db = db;
       }
