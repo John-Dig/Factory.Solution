@@ -1,47 +1,47 @@
 html {
-  background-color:dimgray;
+  background-color: #D5F5E3;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif;
+  font-size:.75rem;
 }
-
 h1 {
-color:darkgreen;
+  color: #196F3D;
+  border-bottom: 2px solid #196F3D;
 }
 
 h2 {
-  color:black;
+  color: #28B463;
 }
 
 h3 {
-  color:darkgreen
+  color: #1D8348;
 }
 a:hover {
-  color: green;
+  color: #2ECC71;
   text-decoration: underline;
-
 }
 a {
-  color:blue;
+  color: #3498DB;
 }
 
-
 body {
-  margin: 2rem;
-  background-color:cadetblue;
-  border-radius:10px;
-  border-style: ridge;
-  border-width:15px;
-  padding:1rem;
+  margin: 1.5rem;
+  background-color: #AED6F1;
+  border-radius: 10px;
+  border-style:double;
+  border-width: 5px;
+  border-color: #196F3D;
+  padding: 1rem;
   width: 50%;
   margin-left: 100px;
   margin-top: 100px;
-  
-
 }
+
 form {
   text-align: right;
 }
 
 input {
-  margin:5px;
+  margin: 5px;
 }
 
 button {
@@ -49,11 +49,11 @@ button {
 }
 
 div#footer {
-  position:fixed;
-  bottom:0px;
-  left:0px;
-  width:100%;
-  color:#CCC;
-  background:#333;
-  padding:8px;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  color: #7DCEA0;
+  background: #1F618D;
+  padding: 8px;
 }
