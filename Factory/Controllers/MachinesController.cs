@@ -46,15 +46,15 @@ namespace Factory.Controllers
       }
     }
 
-    public ActionResult Details(int id)
-    {
-      Machine thisMachine = _db.Machines
-          .Include(machine => machine.Engineer)
-          .Include(machine => machine.JoinEntities)
-          .ThenInclude(join => join.Tag)
-          .FirstOrDefault(machine => machine.MachineId == id);
-      return View(thisMachine);
-    }
+    // public ActionResult Details(int id)
+    // {
+    //   Machine thisMachine = _db.Machines
+    //       .Include(machine => machine.Engineer)
+    //       .Include(machine => machine.JoinEntities)
+    //       .ThenInclude(join => join.Tag)
+    //       .FirstOrDefault(machine => machine.MachineId == id);
+    //   return View(thisMachine);
+    // }
 
     public ActionResult Edit(int id)
     {
@@ -86,34 +86,34 @@ namespace Factory.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult AddTag(int id)
-    {
-      Machine thisMachine = _db.Machines.FirstOrDefault(machines => machines.MachineId == id);
-      ViewBag.TagId = new SelectList(_db.Tags, "TagId", "Title");
-      return View(thisMachine);
-    }
+    // public ActionResult AddTag(int id)
+    // {
+    //   Machine thisMachine = _db.Machines.FirstOrDefault(machines => machines.MachineId == id);
+    //   ViewBag.TagId = new SelectList(_db.Tags, "TagId", "Title");
+    //   return View(thisMachine);
+    // }
 
-    [HttpPost]
-    public ActionResult AddTag(Machine machine, int tagId)
-    {
-      #nullable enable
-      MachineTag? joinEntity = _db.MachineTags.FirstOrDefault(join => (join.TagId == tagId && join.MachineId == machine.MachineId));
-      #nullable disable
-      if (joinEntity == null && tagId != 0)
-      {
-        _db.MachineTags.Add(new MachineTag() { TagId = tagId, MachineId = machine.MachineId });
-        _db.SaveChanges();
-      }
-      return RedirectToAction("Details", new { id = machine.MachineId });
-    }   
+    // [HttpPost]
+    // public ActionResult AddTag(Machine machine, int tagId)
+    // {
+    //   #nullable enable
+    //   MachineTag? joinEntity = _db.MachineTags.FirstOrDefault(join => (join.TagId == tagId && join.MachineId == machine.MachineId));
+    //   #nullable disable
+    //   if (joinEntity == null && tagId != 0)
+    //   {
+    //     _db.MachineTags.Add(new MachineTag() { TagId = tagId, MachineId = machine.MachineId });
+    //     _db.SaveChanges();
+    //   }
+    //   return RedirectToAction("Details", new { id = machine.MachineId });
+    // }   
 
-    [HttpPost]
-    public ActionResult DeleteJoin(int joinId)
-    {
-      MachineTag joinEntry = _db.MachineTags.FirstOrDefault(entry => entry.MachineTagId == joinId);
-      _db.MachineTags.Remove(joinEntry);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    } 
+    // [HttpPost]
+    // public ActionResult DeleteJoin(int joinId)
+    // {
+    //   MachineTag joinEntry = _db.MachineTags.FirstOrDefault(entry => entry.MachineTagId == joinId);
+    //   _db.MachineTags.Remove(joinEntry);
+    //   _db.SaveChanges();
+    //   return RedirectToAction("Index");
+    // } 
   }
 }

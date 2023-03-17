@@ -34,15 +34,15 @@ namespace Factory.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult Details(int id)
-    {
-      Engineer thisEngineer = _db.Engineers
-                                .Include(cat => cat.Machines) //note maybe change cat
-                                .ThenInclude(machine => machine.JoinEntities)
-                                .ThenInclude(join => join.Tag)
-                                .FirstOrDefault(engineer => engineer.EngineerId == id);
-      return View(thisEngineer);
-    }
+    // public ActionResult Details(int id)
+    // {
+    //   Engineer thisEngineer = _db.Engineers
+    //                             .Include(cat => cat.Machines) //note maybe change cat
+    //                             .ThenInclude(machine => machine.JoinEntities)
+    //                             .ThenInclude(join => join.Tag)
+    //                             .FirstOrDefault(engineer => engineer.EngineerId == id);
+    //   return View(thisEngineer);
+    // }
 
     public ActionResult Edit(int id)
     {
