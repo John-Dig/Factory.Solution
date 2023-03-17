@@ -4,10 +4,10 @@ namespace ToDoList.Models
 {
   public class ToDoListContext : DbContext
   {
-    public DbSet<Category> Categories { get; set; }
-    public DbSet<Item> Items { get; set; }
+    public DbSet<Engineer> Engineers { get; set; }
+    public DbSet<Machine> Machines { get; set; }
     public DbSet<Tag> Tags { get; set; }
-    public DbSet<ItemTag> ItemTags { get; set; }
+    public DbSet<MachineTag> MachineTags { get; set; }
 
     public ToDoListContext(DbContextOptions options) : base(options) { }
   }

@@ -3,14 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ToDoList.Models
 {
-  public class Item
+  public class Machine
   {
-    public int ItemId { get; set; }
-    [Required(ErrorMessage = "The item's description can't be empty!")]
+    public int MachineId { get; set; }
+    [Required(ErrorMessage = "The machine's description can't be empty!")]
     public string Description { get; set; }
-    [Range(1, int.MaxValue, ErrorMessage = "You must add your item to a category. Have you created a category yet?")]
-    public int CategoryId { get; set; }
-    public Category Category { get; set; }
-    public List<ItemTag> JoinEntities { get;}
+    [Range(1, int.MaxValue, ErrorMessage = "You must add your machine to a engineer. Have you created a engineer yet?")]
+    public int EngineerId { get; set; }
+    public Engineer Engineer { get; set; }
+    public List<MachineTag> JoinEntities { get;}
   }
 }

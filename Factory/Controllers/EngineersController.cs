@@ -6,18 +6,18 @@ using System.Linq;
 
 namespace ToDoList.Controllers
 {
-  public class CategoriesController : Controller
+  public class EngineersController : Controller
   {
     private readonly ToDoListContext _db;
 
-    public CategoriesController(ToDoListContext db)
+    public EngineersController(ToDoListContext db)
     {
       _db = db;
     }
 
     public ActionResult Index()
     {
-      List<Category> model = _db.Categories.ToList();
+      List<Engineer> model = _db.Engineers.ToList();
       return View(model);
     }
 
@@ -27,48 +27,48 @@ namespace ToDoList.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Category category)
+    public ActionResult Create(Engineer engineer)
     {
-      _db.Categories.Add(category);
+      _db.Engineers.Add(engineer);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
     public ActionResult Details(int id)
     {
-      Category thisCategory = _db.Categories
-                                .Include(cat => cat.Items)
-                                .ThenInclude(item => item.JoinEntities)
+      Engineer thisEngineer = _db.Engineers
+                                .Include(cat => cat.Machines) //note maybe change cat
+                                .ThenInclude(machine => machine.JoinEntities)
                                 .ThenInclude(join => join.Tag)
-                                .FirstOrDefault(category => category.CategoryId == id);
-      return View(thisCategory);
+                                .FirstOrDefault(engineer => engineer.EngineerId == id);
+      return View(thisEngineer);
     }
 
     public ActionResult Edit(int id)
     {
-      Category thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId == id);
-      return View(thisCategory);
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      return View(thisEngineer);
     }
 
     [HttpPost]
-    public ActionResult Edit(Category category)
+    public ActionResult Edit(Engineer engineer)
     {
-      _db.Categories.Update(category);
+      _db.Engineers.Update(engineer);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
     public ActionResult Delete(int id)
     {
-      Category thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId == id);
-      return View(thisCategory);
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      return View(thisEngineer);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      Category thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId == id);
-      _db.Categories.Remove(thisCategory);
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      _db.Engineers.Remove(thisEngineer);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

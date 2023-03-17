@@ -17,11 +17,11 @@ namespace ToDoList.Controllers
       [HttpGet("/")]
       public ActionResult Index()
       {
-        Category[] cats = _db.Categories.ToArray();
-        Item[] items = _db.Items.ToArray();
+        Engineer[] cats = _db.Engineers.ToArray();
+        Machine[] machines = _db.Machines.ToArray();
         Dictionary<string,object[]> model = new Dictionary<string, object[]>();
-        model.Add("categories", cats);
-        model.Add("items", items);
+        model.Add("engineers", cats);
+        model.Add("machines", machines);
         return View(model);
       }
     }

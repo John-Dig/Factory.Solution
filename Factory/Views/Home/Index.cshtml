@@ -8,32 +8,32 @@
 
 <hr>
 
-<h4>Categories</h4>
-@if (Model["categories"].Length == 0)
+<h4>Engineers</h4>
+@if (Model["engineers"].Length == 0)
 {
-  <p>No categories have been added yet!</p>
+  <p>No engineers have been added yet!</p>
 } 
 <ul>
-  @foreach (Category cat in Model["categories"])
+  @foreach (Engineer cat in Model["engineers"])
   {
-    <li>@Html.ActionLink(@cat.Name, "Details", "Categories", new { id = @cat.CategoryId})</li>
+    <li>@Html.ActionLink(@cat.Name, "Details", "Engineers", new { id = @cat.EngineerId})</li>
   }
 </ul>
 
-<h4>Items</h4>
-@if (Model["items"].Length == 0)
+<h4>Machines</h4>
+@if (Model["machines"].Length == 0)
 {
-  <p>No items have been added yet!</p>
+  <p>No machines have been added yet!</p>
 } 
 <ul>
-  @foreach (Item item in Model["items"])
+  @foreach (Machine machine in Model["machines"])
   {
-    <li>@Html.ActionLink(@item.Description, "Details", "Items", new { id = @item.ItemId})</li>
+    <li>@Html.ActionLink(@machine.Description, "Details", "Machines", new { id = @machine.MachineId})</li>
   }
 </ul>
 
 <hr>
 
-<p>@Html.ActionLink("Manage items", "Index", "Items")</p> 
-<p>@Html.ActionLink("Manage categories", "Index", "Categories")</p>
+<p>@Html.ActionLink("Manage machines", "Index", "Machines")</p> 
+<p>@Html.ActionLink("Manage engineers", "Index", "Engineers")</p>
 <p>@Html.ActionLink("Manage tags", "Index", "Tags")</p>
