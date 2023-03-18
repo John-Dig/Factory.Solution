@@ -8,27 +8,27 @@
 
 <h2>Engineer Details</h2>
 <hr />
-@*<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
 
  @if(@Model.Machines.Count == 0)
 {
-  <p>This engineer does not contain any machines</p>
+  <p>This engineer does fix any machines</p>
 }
 else
 {
-  <h4>Machines the engineer contains:</h4>
+  <h4>Machines:</h4>
   <ul>
   @foreach(Machine machine in Model.Machines)
   {
     string tags = "";
     @if(machine.JoinEntities.Count == 0)
     {
-      tags = "This machine does not have any tags.";
+      tags = "No Engineers can fix this machine.";
     }
     else
     {
       List<string> tagList = new List<string>();
-      @foreach(MachineTag join in machine.JoinEntities)
+      @foreach(EngineerMachine join in machine.JoinEntities)
       {
         tagList.Add(join.Tag.Title);
       }
@@ -42,4 +42,4 @@ else
 <p>@Html.ActionLink("Back to engineers", "Index")</p>
 <p>@Html.ActionLink("Edit Engineer", "Edit", new { id = Model.EngineerId })</p>
 <p>@Html.ActionLink("Delete Engineer", "Delete", new { id = Model.EngineerId })</p>
-<p>@Html.ActionLink("Add new machine", "Create", "Machines")</p> *@
+<p>@Html.ActionLink("Add new machine", "Create", "Machines")</p>
