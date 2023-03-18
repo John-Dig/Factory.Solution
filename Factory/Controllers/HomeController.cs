@@ -17,10 +17,10 @@ namespace Factory.Controllers
       [HttpGet("/")]
       public ActionResult Index()
       {
-        Engineer[] cats = _db.Engineers.ToArray();
+        Engineer[] engineers = _db.Engineers.ToArray();
         Machine[] machines = _db.Machines.ToArray();
         Dictionary<string,object[]> model = new Dictionary<string, object[]>();
-        model.Add("engineers", cats);
+        model.Add("engineers", engineers);
         model.Add("machines", machines);
         return View(model);
       }

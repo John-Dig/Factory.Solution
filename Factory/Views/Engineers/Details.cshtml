@@ -12,29 +12,29 @@
 
  @if(@Model.Machines.Count == 0)
 {
-  <p>This engineer does fix any machines</p>
+  <p>This engineer does not fix any machines</p>
 }
 else
 {
-  <h4>Machines:</h4>
+  <h4>Machines this engineer can fix</h4>
   <ul>
   @foreach(Machine machine in Model.Machines)
   {
-    string tags = "";
+    string machinesEngineerFixes = "";
     @if(machine.JoinEntities.Count == 0)
     {
-      tags = "No Engineers can fix this machine.";
+      machinesEngineerFixes = "This machine is just going to stay broken until a proper engineer is hired.";
     }
     else
     {
-      List<string> tagList = new List<string>();
+      List<string> machineList = new List<string>();
       @foreach(EngineerMachine join in machine.JoinEntities)
       {
-        tagList.Add(join.Tag.Title);
+        machineList.Add(join.Machine.Name);
       }
-      tags = String.Join(", ", tagList);
+      machinesEngineerFixes = String.Join(", ", machineList);
     }
-    <li>@machine.Description | Tags: @tags</li>
+    <li>@machine.Name | Machines: @machinesEngineerFixes</li>
   }
   </ul>
 }
