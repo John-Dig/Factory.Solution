@@ -11,6 +11,6 @@ namespace Factory.Models
     [Range(1, int.MaxValue, ErrorMessage = "You must add your machine to a engineer. Have you created a engineer yet?")]
     public int EngineerId { get; set; }
     public Engineer Engineer { get; set; }
-    public List<EngineerMachine> JoinEntities { get;}
+    public List<EnMa> JoinEntities { get;}
   }
 }

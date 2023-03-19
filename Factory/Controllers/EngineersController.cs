@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Factory.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 
 namespace Factory.Controllers
 {
@@ -36,6 +38,9 @@ namespace Factory.Controllers
 
     public ActionResult Details(int id)
     {
+      IEnumerable<EnMa> machinesList = _db.EnMas.ToList();
+      ViewBag.machinesList = machinesList;
+
       Engineer thisEngineer = _db.Engineers
                                 .Include(eng => eng.Machines)
                                 .ThenInclude(machine => machine.JoinEntities)

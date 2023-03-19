@@ -28,7 +28,7 @@ else
     else
     {
       List<string> machineList = new List<string>();
-      @foreach(EngineerMachine join in machine.JoinEntities)
+      @foreach(EnMa join in machine.JoinEntities)
       {
         machineList.Add(join.Machine.Name);
       }
