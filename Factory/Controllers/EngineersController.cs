@@ -39,7 +39,7 @@ namespace Factory.Controllers
     public ActionResult Details(int id)
     {
       IEnumerable<EnMa> machinesList = _db.EnMas.ToList();
-      ViewBag.machinesList = machinesList;
+      ViewBag.machinesList = machinesList; //nothing in EnMas db yet
 
       Engineer thisEngineer = _db.Engineers
                                 .Include(eng => eng.Machines)

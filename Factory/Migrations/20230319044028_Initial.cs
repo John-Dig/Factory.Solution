@@ -52,25 +52,25 @@ namespace Factory.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "EngineerMachines",
+                name: "EnMas",
                 columns: table => new
                 {
-                    EngineerMachineId = table.Column<int>(type: "int", nullable: false)
+                    EnMaId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    MachineId = table.Column<int>(type: "int", nullable: false),
-                    EngineerId = table.Column<int>(type: "int", nullable: false)
+                    EngineerId = table.Column<int>(type: "int", nullable: false),
+                    MachineId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EngineerMachines", x => x.EngineerMachineId);
+                    table.PrimaryKey("PK_EnMas", x => x.EnMaId);
                     table.ForeignKey(
-                        name: "FK_EngineerMachines_Engineers_EngineerId",
+                        name: "FK_EnMas_Engineers_EngineerId",
                         column: x => x.EngineerId,
                         principalTable: "Engineers",
                         principalColumn: "EngineerId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EngineerMachines_Machines_MachineId",
+                        name: "FK_EnMas_Machines_MachineId",
                         column: x => x.MachineId,
                         principalTable: "Machines",
                         principalColumn: "MachineId",
@@ -79,13 +79,13 @@ namespace Factory.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EngineerMachines_EngineerId",
-                table: "EngineerMachines",
+                name: "IX_EnMas_EngineerId",
+                table: "EnMas",
                 column: "EngineerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EngineerMachines_MachineId",
-                table: "EngineerMachines",
+                name: "IX_EnMas_MachineId",
+                table: "EnMas",
                 column: "MachineId");
 
             migrationBuilder.CreateIndex(
@@ -98,7 +98,7 @@ namespace Factory.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "EngineerMachines");
+                name: "EnMas");
 
             migrationBuilder.DropTable(
                 name: "Machines");

@@ -18,6 +18,27 @@ namespace Factory.Migrations
                 .HasAnnotation("ProductVersion", "7.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("Factory.Models.EnMa", b =>
+                {
+                    b.Property<int>("EnMaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("EngineerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MachineId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EnMaId");
+
+                    b.HasIndex("EngineerId");
+
+                    b.HasIndex("MachineId");
+
+                    b.ToTable("EnMas");
+                });
+
             modelBuilder.Entity("Factory.Models.Engineer", b =>
                 {
                     b.Property<int>("EngineerId")
@@ -30,27 +51,6 @@ namespace Factory.Migrations
                     b.HasKey("EngineerId");
 
                     b.ToTable("Engineers");
-                });
-
-            modelBuilder.Entity("Factory.Models.EngineerMachine", b =>
-                {
-                    b.Property<int>("EngineerMachineId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("EngineerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MachineId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EngineerMachineId");
-
-                    b.HasIndex("EngineerId");
-
-                    b.HasIndex("MachineId");
-
-                    b.ToTable("EngineerMachines");
                 });
 
             modelBuilder.Entity("Factory.Models.Machine", b =>
@@ -73,10 +73,10 @@ namespace Factory.Migrations
                     b.ToTable("Machines");
                 });
 
-            modelBuilder.Entity("Factory.Models.EngineerMachine", b =>
+            modelBuilder.Entity("Factory.Models.EnMa", b =>
                 {
                     b.HasOne("Factory.Models.Engineer", "Engineer")
-                        .WithMany()
+                        .WithMany("JoinEntities")
                         .HasForeignKey("EngineerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -105,6 +105,8 @@ namespace Factory.Migrations
 
             modelBuilder.Entity("Factory.Models.Engineer", b =>
                 {
+                    b.Navigation("JoinEntities");
+
                     b.Navigation("Machines");
                 });
 

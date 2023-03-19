@@ -8,7 +8,7 @@
 
 <h2>Engineer Details</h2>
 <hr />
-<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+<h3>Engineer @Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
 
  @if(@Model.Machines.Count == 0)
 {
@@ -20,21 +20,16 @@ else
   <ul>
   @foreach(Machine machine in Model.Machines)
   {
-    string machinesEngineerFixes = "";
-    @if(machine.JoinEntities.Count == 0)
-    {
-      machinesEngineerFixes = "This machine is just going to stay broken until a proper engineer is hired.";
-    }
-    else
-    {
+    string machinesEngineerFixes = "machine.name";
+   
       List<string> machineList = new List<string>();
       @foreach(EnMa join in machine.JoinEntities)
       {
         machineList.Add(join.Machine.Name);
       }
       machinesEngineerFixes = String.Join(", ", machineList);
-    }
-    <li>@machine.Name | Machines: @machinesEngineerFixes</li>
+    
+    <li>@machine.Name</li>
   }
   </ul>
 }
