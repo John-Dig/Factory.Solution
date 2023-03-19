@@ -39,13 +39,13 @@ namespace Factory.Controllers
     public ActionResult Details(int id)
     {
       IEnumerable<EnMa> machinesList = _db.EnMas.ToList();
-      ViewBag.machinesList = machinesList; //nothing in EnMas db yet
+      ViewBag.machinesList = machinesList; //nothing in EnMas db yet, may not use this
 
       Engineer thisEngineer = _db.Engineers
-                                .Include(eng => eng.Machines)
-                                .ThenInclude(machine => machine.JoinEntities)
-                                //.ThenInclude(join => join.Machine)
-                                .FirstOrDefault(engineer => engineer.EngineerId == id);
+                                 .Include(eng => eng.Machines)
+                                 .ThenInclude(machine => machine.JoinEntities)
+                                 //.ThenInclude(join => join.Machine)
+                                 .FirstOrDefault(engineer => engineer.EngineerId == id);
       return View(thisEngineer);
     }
 

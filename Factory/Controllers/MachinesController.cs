@@ -35,8 +35,8 @@ namespace Factory.Controllers
     {
       if (!ModelState.IsValid)
       {
-          ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "Name");
-          return View(machine);
+        ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "Name");
+        return View(machine);
       }
       else
       {
@@ -46,15 +46,15 @@ namespace Factory.Controllers
       }
     }
 
-    // public ActionResult Details(int id)
-    // {
-    //   Machine thisMachine = _db.Machines
-    //       .Include(machine => machine.Engineer)
-    //       .Include(machine => machine.JoinEntities)
-    //       .ThenInclude(join => join.Tag)
-    //       .FirstOrDefault(machine => machine.MachineId == id);
-    //   return View(thisMachine);
-    // }
+    public ActionResult Details(int id)
+    {
+      Machine thisMachine = _db.Machines
+                               .Include(mach => mach.Engineer)
+                               .Include(machine => machine.JoinEntities)
+                               //.ThenInclude(join => join.Tag)
+                               .FirstOrDefault(machine => machine.MachineId == id);
+      return View(thisMachine);
+    }
 
     public ActionResult Edit(int id)
     {
