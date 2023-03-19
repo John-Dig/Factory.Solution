@@ -18,7 +18,7 @@ else
 {
   <h4>Engineers that can repair this machine:</h4>
   <ul>
-  @foreach (MachineTag join in Model.JoinEntities)
+  @foreach (Engineer engineer in Model.Engineers)
     {
       <li>Tag: @join.Tag.Title</li>
       @using (Html.BeginForm("DeleteJoin", "Machines"))
