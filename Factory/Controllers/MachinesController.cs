@@ -7,5 +7,18 @@ using System.Linq;
 
 namespace Factory.Controllers
 {
- 
+  public class MachinesController : Controller
+  {
+    private readonly FactoryContext _db;
+
+    public MachinesController(FactoryContext db)
+    {
+      _db = db;
+    }
+
+    public ActionResult Index()
+    {
+      return View(_db.Machines.ToList()); // pass in the method call directly to View()
+    }
+  }
 }
