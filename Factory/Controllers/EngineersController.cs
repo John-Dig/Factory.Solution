@@ -18,10 +18,11 @@ namespace Factory.Controllers
 
     public ActionResult Index()
     {
-      List<Engineer> model = _db.Engineers
-                            .Include(engineer => engineer.Name)
-                            .ToList();
-      return View(model);
+      return View(_db.Engineers.ToList());
+      // List<Engineer> model = _db.Engineers
+      //                       .Include(engineer => engineer.Name)
+      //                       .ToList();
+      // return View(model);
     }
 
     // public ActionResult Create()
