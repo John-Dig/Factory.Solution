@@ -86,12 +86,12 @@ namespace Factory.Controllers
       return RedirectToAction("Index");
     }
 
-    // public ActionResult AddTag(int id)
-    // {
-    //   Machine thisMachine = _db.Machines.FirstOrDefault(machines => machines.MachineId == id);
-    //   ViewBag.TagId = new SelectList(_db.Tags, "TagId", "Title");
-    //   return View(thisMachine);
-    // }
+    public ActionResult AddTag(int id)
+    {
+      Machine thisMachine = _db.Machines.FirstOrDefault(machines => machines.MachineId == id);
+      ViewBag.TagId = new SelectList(_db.Tags, "TagId", "Title");
+      return View(thisMachine);
+    }
 
     // [HttpPost]
     // public ActionResult AddTag(Machine machine, int tagId)
