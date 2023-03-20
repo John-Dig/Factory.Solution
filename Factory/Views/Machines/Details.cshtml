@@ -1,0 +1,27 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Factory.Models
+@model Factory.Models.Machine //so we can use Html helper methods x2
+
+<h2>Machine Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This machine has no engineers assigned to repair it.</p>
+}
+else
+{
+  <h4>Engineers this machine can be repaired by:</h4>
+  <ul>
+  @foreach(EnMa join in Model.JoinEntities)  //join represents a single EnMa entity
+  {
+    <li>@join.Engineer.Name</li>
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to the machines list", "Index")</p>

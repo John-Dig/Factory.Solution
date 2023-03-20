@@ -43,6 +43,16 @@ namespace Factory.Controllers
     //   return RedirectToAction("Index");
     // }
 
+
+
+    public ActionResult Details(int id)
+    {
+      Engineer thisEngineer = _db.Engineers
+          .Include(engineer => engineer.JoinEntities) //an Include() property can/ needs to be added for as many navigation properties as we have and need to fetch
+          .ThenInclude(join => join.Machine)
+          .FirstOrDefault(engineer => engineer.EngineerId == id);
+      return View(thisEngineer);
+    }
     // public ActionResult Details(int id)
     // {
     //   Engineer thisEngineer = _db.Engineers

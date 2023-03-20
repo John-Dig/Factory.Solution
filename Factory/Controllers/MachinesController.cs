@@ -20,11 +20,11 @@ namespace Factory.Controllers
     {
       return View(_db.Machines.ToList()); // pass in the method call directly to View()
     }
-    
+
     public ActionResult Details(int id)
     {
       Machine thisMachine = _db.Machines
-          .Include(machine => machine.JoinEntities)
+          .Include(machine => machine.JoinEntities) //an Include() property can/ needs to be added for as many navigation properties as we have and need to fetch
           .ThenInclude(join => join.Engineer)
           .FirstOrDefault(machine => machine.MachineId == id);
       return View(thisMachine);
