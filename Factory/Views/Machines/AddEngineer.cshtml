@@ -6,14 +6,14 @@
 
 <h2>Add an Engineer who can fix this Machine</h2>
 
-<h4>Add a tag to this machine: @Html.DisplayFor(model => model.Description)</h4>
+<h4>@Html.DisplayFor(model => model.Name)</h4>
 
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.MachineId)
 
-    @Html.Label("Select tag")
-    @Html.DropDownList("TagId")
+    @Html.Label("Select Engineer")
+    @Html.DropDownList("EngineerId")
 
     <input type="submit" value="Save" />
 }
