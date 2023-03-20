@@ -8,7 +8,7 @@
 <h2>Machine Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
-<h3>@Html.DisplayNameFor(model => model.Engineer): @Html.DisplayFor(model => model.Engineer.Name)</h3>
+<h3>@Html.DisplayNameFor(model => model.EngineerId): @Html.DisplayFor(model => model.EngineerId)</h3>
 
 @if (@Model.JoinEntities.Count == 0)
 {
@@ -18,12 +18,12 @@ else
 {
   <h4>Engineers that can repair this machine:</h4>
   <ul>
-  @foreach (Engineer engineer in Model.Engineers)
+  @foreach (EnMa join in Model.JoinEntities)
     {
-      <li>Tag: @join.Tag.Title</li>
+      <li>Engineer: @join.Engineer.Name</li>
       @using (Html.BeginForm("DeleteJoin", "Machines"))
       {
-        @Html.Hidden("joinId", @join.MachineTagId)
+        @Html.Hidden("joinId", @join.MachineId)
         <input type="submit" value="Delete" />
       }
     }
