@@ -24,27 +24,6 @@ namespace Factory.Controllers
       //                       .ToList();
       // return View(model);
     }
-
-    // public ActionResult Create()
-    // {
-    //   ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
-    //   return View();
-    // }
-
-    // [HttpPost]
-    // public ActionResult Create(Engineer engineer)
-    // {
-    //   if (engineer.CategoryId == 0)
-    //   {
-    //     return RedirectToAction("Create");
-    //   }
-    //   _db.Engineers.Add(engineer);
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
-
-
-
     public ActionResult Details(int id)
     {
       Engineer thisEngineer = _db.Engineers
@@ -53,42 +32,25 @@ namespace Factory.Controllers
           .FirstOrDefault(engineer => engineer.EngineerId == id);
       return View(thisEngineer);
     }
-    // public ActionResult Details(int id)
-    // {
-    //   Engineer thisEngineer = _db.Engineers
-    //                       .Include(engineer => engineer.Category)
-    //                       .FirstOrDefault(engineer => engineer.EngineerId == id);
-    //   return View(thisEngineer);
-    // }
+    public ActionResult AddTag(int id)
+    {
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineers => engineers.EngineerId == id);
+      ViewBag.TagId = new SelectList(_db.Machines, "MachineId", "Name");
+      return View(thisEngineer);
+    }
 
-    // public ActionResult Edit(int id)
-    // {
-    //   Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
-    //   ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
-    //   return View(thisEngineer);
-    // }
-
-    // [HttpPost]
-    // public ActionResult Edit(Engineer engineer)
-    // {
-    //   _db.Engineers.Update(engineer);
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
-
-    // public ActionResult Delete(int id)
-    // {
-    //   Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
-    //   return View(thisEngineer);
-    // }
-
-    // [HttpPost, ActionName("Delete")]
-    // public ActionResult DeleteConfirmed(int id)
-    // {
-    //   Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
-    //   _db.Engineers.Remove(thisEngineer);
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
+    [HttpPost]
+    public ActionResult AddTag(Engineer engineer, int machineId)
+    {
+#nullable enable
+      EnMa? joinEntity = _db.EnsMas.FirstOrDefault(join => (join.MachineId == machineId && join.EngineerId == engineer.EngineerId));
+#nullable disable
+      if (joinEntity == null && machineId != 0)
+      {
+        _db.EnsMas.Add(new EnMa() { MachineId = machineId, EngineerId = engineer.EngineerId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Details", new { id = engineer.EngineerId });
+    }
   }
 }
