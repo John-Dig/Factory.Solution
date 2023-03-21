@@ -1,7 +1,7 @@
 html {
   background-color: #D5F5E3;
   font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif;
-  font-size:.75rem;
+  font-size:1rem;
 }
 h1 {
   color: #196F3D;
@@ -40,8 +40,26 @@ form {
   text-align: right;
 }
 
-input {
+input[type="submit"] {
   margin: 5px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+input[type="submit"]:active {
+  background-color: #3e8e41;
+  transform: scale(0.95);
 }
 
 button {

@@ -23,7 +23,7 @@ else
     @using (Html.BeginForm("DeleteJoin", "Machines"))
 {
   @Html.Hidden("joinId", @join.EnMaId)
-  <input type="submit" value="Delete"/>
+  <input type="submit" value="Click here if @join.Engineer.Name should no longer be authorized to fix @join.Machine.Name"/>
 }
   }
   </ul>
