@@ -20,9 +20,16 @@ else
   @foreach(EnMa join in Model.JoinEntities)  //join represents a single EnMa entity
   {
     <li>@join.Engineer.Name</li>
+    @using (Html.BeginForm("DeleteJoin", "Machines"))
+{
+  @Html.Hidden("joinId", @join.EnMaId)
+  <input type="submit" value="Delete"/>
+}
   }
   </ul>
 }
 
 <p>@Html.ActionLink("Add an engineer", "AddEngineer", new { id = Model.MachineId })</p>
+<p>@Html.ActionLink("Edit machine", "Edit", new { id = Model.MachineId})</p>
+<p>@Html.ActionLink("Delete machine", "Delete", new { id = Model.MachineId })</p>
 <p>@Html.ActionLink("Back to the machines list", "Index")</p>
