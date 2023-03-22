@@ -35,7 +35,7 @@ None.
 
 ```mermaid
 %%{init: {'theme': 'forest'}}%%
-flowchart LR
+flowchart TD
 SplashPage("/"<br>See all engineers<br>See all machines)--"See all Engineers"-->EngineersIndex("/engineers"<br>list of Engineers)--add an engineer-->EngineerCreate("/engineer/create") 
 EngineersIndex--"[selected engineer]"-->EngineersDetails("/engineers/details/#"<br>add, edit, delete, revoke license)
 SplashPage--"See all machines"-->MachineIndex("/machine"<br>list of Machines<br>)--add a machine-->MachineCreate("/machines/create"<br>)
