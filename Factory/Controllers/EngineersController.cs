@@ -19,13 +19,9 @@ namespace Factory.Controllers
     public ActionResult Index()
     {
       return View(_db.Engineers.ToList());
-      // List<Engineer> model = _db.Engineers
-      //                       .Include(engineer => engineer.Name)
-      //                       .ToList();
-      // return View(model);
     }
 
-     public ActionResult Create() 
+    public ActionResult Create()
     {
       return View();
     }
@@ -33,7 +29,7 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult Create(Engineer engineer)
     {
-          _db.Engineers.Add(engineer);
+      _db.Engineers.Add(engineer);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
@@ -47,9 +43,11 @@ namespace Factory.Controllers
       return View(thisEngineer);
     }
 
-     public ActionResult Edit(int id)
+    public ActionResult Edit(int id)
     {
-      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      //experiment below
+      Engineer thisEngineer = _db.Engineers.Find(id);
+      //Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
       return View(thisEngineer);
     }
 
@@ -67,15 +65,14 @@ namespace Factory.Controllers
       return View(thisEngineer);
     }
 
- public ActionResult Delete(int id)
+    public ActionResult Delete(int id)
     {
       Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
       return View(thisEngineer);
     }
 
     [HttpPost, ActionName("Delete")]
-    public ActionResult DeleteConfirmed(int id) //??? from where is called?
-    {
+    public ActionResult DeleteConfirmed(int id) 
       Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
       _db.Engineers.Remove(thisEngineer);
       _db.SaveChanges();
@@ -96,7 +93,7 @@ namespace Factory.Controllers
       return RedirectToAction("Details", new { id = engineer.EngineerId });
     }
 
-     [HttpPost]
+    [HttpPost]
     public ActionResult DeleteJoin(int joinId)
     {
       EnMa joinEntry = _db.EnsMas.FirstOrDefault(entry => entry.EnMaId == joinId);

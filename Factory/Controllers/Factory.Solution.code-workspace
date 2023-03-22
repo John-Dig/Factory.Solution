@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"name": "Factory.Solution",
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"cSpell.words": [
+			"Stringz's"
+		],
+		"workbench.colorTheme": "Default High Contrast"
+	}
+}
